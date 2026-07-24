@@ -1,0 +1,31 @@
+/* ==========================================================================
+   Pachamama ERP - Design Tokens
+   ========================================================================== */
+
+:root {
+  --color-primario: #FFA33C;
+  --color-primario-texto-sobre: #2B1E10;
+  --color-secundario: #8BAE3C;
+  --color-secundario-texto-sobre: #1F2E0F;
+  --color-tinta: #2B1E10;
+  --color-fondo: #F6F1E4;
+  --color-borde: #6B6153;
+  --color-alerta: #B23A1D;
+  --color-alerta-fondo: #FBE6E0;
+  --color-alerta-texto: #8A3A1F;
+  --color-exito: #4A6B1E;
+  --color-exito-fondo: #EAF1DE;
+  --color-exito-texto: #4A6B1E;
+
+  --fuente-titulos: 'Barlow Condensed', sans-serif;
+  --fuente-cuerpo: 'IBM Plex Sans', sans-serif;
+  --fuente-codigo: 'IBM Plex Mono', monospace;
+
+  --radio-control: 8px;
+  --radio-tarjeta: 12px;
+  --espacio-xs: 4px;
+  --espacio-sm: 8px;
+  --espacio-md: 16px;
+  --espacio-lg: 24px;
+  --espacio-xl: 32px;
+}

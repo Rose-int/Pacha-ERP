@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Firebase logs & runtime cache
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+
+# Environment & Credentials
+.env
+.env.local
+*.secret.json
+
+# IDE & OS files
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db

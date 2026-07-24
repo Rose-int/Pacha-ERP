@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pachamama ERP - Planta Exportadora de Mango</title>
+    <meta name="description" content="Sistema Integral de Producción y ERP para la administración y supervisión de plantas exportadoras de mango. Incluye módulos de recepción, calibrado, tratamiento hidrotérmico, maduración y empaque.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap">
+    <link rel="stylesheet" href="css/tokens.css?v=1.0.3">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.3">
+    <link rel="icon" type="image/png" href="pachamama_logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-section" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 4px 16px; height: 90px;">
+                <div style="display: flex; align-items: center; justify-content: center; flex: 1; height: 100%;">
+                    <img src="pachamama_logo.png" alt="Pachamama Logo" style="height: 64px; width: auto; object-fit: contain;">
+                </div>
+                <button class="mobile-close-btn" id="mobile-sidebar-close" style="display: none; background: transparent; border: none; color: var(--color-tinta); cursor: pointer; padding: 4px;">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            
+            <nav class="nav-menu">
+                <!-- Procesos de Producción -->
+                <div class="nav-group-title">Procesos de Producción</div>
+                
+                <div class="nav-item active" data-view="recepcion">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+                    Recepción
+                </div>
+                
+                <div class="nav-item" data-view="calidad">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 3h6"/><path d="M10 9h4"/><path d="M10 3v6L4 19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2L14 9V3"/></svg>
+                    Módulo de Calidad
+                </div>
+                
+                <div class="nav-item" data-view="calibrado">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+                    Calibrado
+                </div>
+                
+                <div class="nav-item" data-view="premaduracion">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+                    Premaduración
+                </div>
+
+                <div class="nav-item" data-view="hidrotermico">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+                    Hidrotérmico
+                </div>
+                
+                <div class="nav-item" data-view="produccion">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 22V12"/><path d="M22 7l-10-5-10 5 10 5 10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    Empaque
+                </div>
+
+                <div class="nav-item" data-view="tunel">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M2 4h20v16H2zM2 10h20M6 14v4M10 14v4M14 14v4M18 14v4"/></svg>
+                    Túnel
+                </div>
+                
+                <div class="nav-item" data-view="camara-frio">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20"/><path d="M20 12H4"/><path d="M19 7l-14 10"/><path d="M5 7l14 10"/></svg>
+                    Cámara de Frío
+                </div>
+                
+                <div class="nav-item" data-view="despacho">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    Despacho
+                </div>
+
+                <!-- Gestión de Producción -->
+                <div class="nav-group-title">Gestión de Producción</div>
+
+                <div class="nav-item" data-view="asistencia">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    Asistencia Diaria
+                </div>
+
+                <div class="nav-item" data-view="tareo">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Tarea de Labores
+                </div>
+
+                <div class="nav-item" data-view="grupos-trabajo">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Grupos de Trabajo
+                </div>
+
+                <div class="nav-item" data-view="trazabilidad">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    Trazabilidad Lote
+                </div>
+
+                <div class="nav-item" data-view="recursos-humanos">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                    RRHH Costo MOD
+                </div>
+
+                <div class="nav-item" data-view="dashboard-ejecutivo">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                    Dashboard General
+                </div>
+
+
+
+                <div class="nav-item" data-view="configuracion" style="grid-column: span 2;">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    Configuración System
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                v1.0.0 (Offline Mode)
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <div class="main-wrapper">
+            
+            <!-- Top Header -->
+            <header class="header">
+                <div class="header-title-section" style="display: flex; align-items: center; gap: 12px;">
+                    <button class="mobile-toggle-btn" id="mobile-sidebar-toggle" style="display: none; background: transparent; border: none; color: var(--text-primary); cursor: pointer; padding: 4px;">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                    <h1 id="header-title-text">Dashboard Ejecutivo</h1>
+                </div>
+                <div class="header-actions" style="display: flex; align-items: center; gap: 16px;">
+                    <!-- Global Campaign Selector -->
+                    <div class="global-campana-container" style="display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.03); padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Campaña:</span>
+                        <select id="global-campana-select" style="background: transparent; border: none; font-size: 0.75rem; font-weight: 800; color: var(--color-primario); outline: none; cursor: pointer; font-family: monospace;">
+                            <option value="2526">2025 - 2026</option>
+                            <option value="2627" selected>2026 - 2027</option>
+                            <option value="2728">2027 - 2028</option>
+                        </select>
+                    </div>
+
+                    <!-- Connectivity Badge -->
+                    <div id="global-cloud-status"></div>
+
+                    <div class="user-badge">
+                        <div class="user-avatar">AD</div>
+                        <span class="user-name">Administrador Planta</span>
+                        <span class="role-badge">Super Admin</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dynamic Content Area -->
+            <main class="content-area">
+                
+                <!-- Dashboard Panel -->
+                <div class="view-panel active" id="view-dashboard-ejecutivo">
+                    <!-- Loaded dynamically via dashboard.js -->
+                </div>
+
+                <!-- Recepcion Panel -->
+                <div class="view-panel" id="view-recepcion">
+                    <!-- Loaded dynamically via recepcion.js -->
+                </div>
+
+                <!-- Calidad Panel -->
+                <div class="view-panel" id="view-calidad">
+                    <!-- Loaded dynamically via calidad.js -->
+                </div>
+
+                <!-- Calibrado Panel -->
+                <div class="view-panel" id="view-calibrado">
+                    <!-- Loaded dynamically via calibrado.js -->
+                </div>
+
+                <!-- Production Panel -->
+                <div class="view-panel" id="view-produccion">
+                    <!-- Loaded dynamically via produccion.js -->
+                </div>
+
+                <!-- Grupos de Trabajo Panel -->
+                <div class="view-panel" id="view-grupos-trabajo">
+                    <!-- Loaded dynamically via grupos-trabajo.js -->
+                </div>
+
+                <!-- Attendance Panel -->
+                <div class="view-panel" id="view-asistencia">
+                    <!-- Loaded dynamically via asistencia.js -->
+                </div>
+
+                <!-- Tareo Panel -->
+                <div class="view-panel" id="view-tareo">
+                    <!-- Loaded dynamically via tareo.js -->
+                </div>
+
+                <!-- Traceability Panel -->
+                <div class="view-panel" id="view-trazabilidad">
+                    <!-- Loaded dynamically via trazabilidad.js -->
+                </div>
+
+                <!-- HR Panel -->
+                <div class="view-panel" id="view-recursos-humanos">
+                    <!-- Loaded dynamically via rrhh.js -->
+                </div>
+
+                <!-- Costeo Panel -->
+                <div class="view-panel" id="view-costeo">
+                    <!-- Loaded dynamically via costeo.js -->
+                </div>
+
+
+
+                <!-- Configuration Panel -->
+                <div class="view-panel" id="view-configuracion">
+                    <!-- Loaded dynamically via configuracion.js -->
+                </div>
+
+                <!-- Premaduración Panel -->
+                <div class="view-panel" id="view-premaduracion">
+                    <div class="card" style="padding: 40px; text-align: center; max-width: 600px; margin: 50px auto;">
+                        <span style="font-size: 3rem;">🌡️</span>
+                        <h2 style="color: var(--color-primario); font-family: var(--fuente-titulos); margin-top: 15px;">Módulo de Premaduración</h2>
+                        <p style="margin-top: 15px; color: var(--color-borde); font-size: 0.95rem; line-height: 1.6;">
+                            Este módulo gestiona la maduración controlada mediante sensores de temperatura, humedad y etileno.
+                        </p>
+                        <div class="badge-alerta" style="margin-top: 24px; display: inline-flex; align-items: center; justify-content: center;">
+                            ⚠️ Integración de sensores IoT en desarrollo
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidrotérmico Panel -->
+                <div class="view-panel" id="view-hidrotermico">
+                    <div class="card" style="padding: 40px; text-align: center; max-width: 600px; margin: 50px auto;">
+                        <span style="font-size: 3rem;">♨️</span>
+                        <h2 style="color: var(--color-primario); font-family: var(--fuente-titulos); margin-top: 15px;">Módulo Hidrotérmico (Quarantine)</h2>
+                        <p style="margin-top: 15px; color: var(--color-borde); font-size: 0.95rem; line-height: 1.6;">
+                            Monitoreo y registro de tratamiento hidrotérmico para control fitosanitario (temperatura del agua a 46.1°C por tiempo regulado USDA).
+                        </p>
+                        <div class="badge-alerta" style="margin-top: 24px; display: inline-flex; align-items: center; justify-content: center;">
+                            ⚠️ Sensores de calibración USDA en proceso de certificación
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Túnel Panel -->
+                <div class="view-panel" id="view-tunel">
+                    <div class="card" style="padding: 40px; text-align: center; max-width: 600px; margin: 50px auto;">
+                        <span style="font-size: 3rem;">🌀</span>
+                        <h2 style="color: var(--color-primario); font-family: var(--fuente-titulos); margin-top: 15px;">Túnel de Enfriamiento Rápido</h2>
+                        <p style="margin-top: 15px; color: var(--color-borde); font-size: 0.95rem; line-height: 1.6;">
+                            Control de túnel de aire forzado para abatimiento rápido de temperatura antes de cámara de frío.
+                        </p>
+                        <div class="badge-alerta" style="margin-top: 24px; display: inline-flex; align-items: center; justify-content: center;">
+                            ⚠️ Integración de PLCs de enfriamiento en desarrollo
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cámara de Frío Panel -->
+                <div class="view-panel" id="view-camara-frio">
+                    <div class="card" style="padding: 40px; text-align: center; max-width: 600px; margin: 50px auto;">
+                        <span style="font-size: 3rem;">❄️</span>
+                        <h2 style="color: var(--color-primario); font-family: var(--fuente-titulos); margin-top: 15px;">Cámara de Frío</h2>
+                        <p style="margin-top: 15px; color: var(--color-borde); font-size: 0.95rem; line-height: 1.6;">
+                            Control de temperatura para conservación de pallets listos para exportación.
+                        </p>
+                        <div class="badge-alerta" style="margin-top: 24px; display: inline-flex; align-items: center; justify-content: center;">
+                            ⚠️ Sensores de temperatura en pruebas de conectividad
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Despacho Panel -->
+                <div class="view-panel" id="view-despacho">
+                    <div class="card" style="padding: 40px; text-align: center; max-width: 600px; margin: 50px auto;">
+                        <span style="font-size: 3rem;">🚢</span>
+                        <h2 style="color: var(--color-primario); font-family: var(--fuente-titulos); margin-top: 15px;">Cámara y Despacho</h2>
+                        <p style="margin-top: 15px; color: var(--color-borde); font-size: 0.95rem; line-height: 1.6;">
+                            Programación de contenedores refrigerados y exportaciones (Vía Puerto Paita).
+                        </p>
+                        <div class="badge-alerta" style="margin-top: 24px; display: inline-flex; align-items: center; justify-content: center;">
+                            ⚠️ Módulo en pruebas de certificación de aduanas
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <!-- Scripts Loading -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" type="text/javascript"></script>
+    <!-- Firebase SDKs for Google Cloud Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/db.js?v=1.8.6"></script>
+    <script src="js/utils.js?v=1.8.6"></script>
+    <script src="js/modules/dashboard.js?v=1.8.6"></script>
+    <script src="js/modules/configuracion.js?v=1.8.6"></script>
+    <script src="js/modules/ia-studio.js?v=1.8.6"></script>
+    <script src="js/modules/recepcion.js?v=1.8.6"></script>
+    <script src="js/modules/calidad.js?v=1.8.6"></script>
+    <script src="js/modules/calibrado.js?v=1.8.6"></script>
+    <script src="js/modules/produccion.js?v=1.8.6"></script>
+    <script src="js/modules/grupos-trabajo.js?v=1.8.6"></script>
+    <script src="js/modules/asistencia.js?v=1.8.6"></script>
+    <script src="js/modules/tareo.js?v=1.8.6"></script>
+    <script src="js/modules/trazabilidad.js?v=1.8.6"></script>
+    <script src="js/modules/rrhh.js?v=1.8.6"></script>
+    <script src="js/modules/costeo.js?v=1.8.6"></script>
+    <script src="js/app.js?v=1.8.6"></script>
+
+</body>
+</html>
