@@ -1,70 +1,46 @@
-# ERP Pachamama Farms 🌿🚜 - Cloud NoSQL ERP & Business Intelligence Platform
+# Pachamama ERP - Sistema de Planificación de Recursos Empresariales para el Sector Agroindustrial
 
-![Platform](https://img.shields.io/badge/Platform-Web%20Cloud-blue?logo=googlechrome)
-![NoSQL Database](https://img.shields.io/badge/NoSQL%20DB-Firebase%20Firestore-orange?logo=firebase)
-![BI & Analytics](https://img.shields.io/badge/Domain-BI%20%26%20Analytics-green)
-![Cloud Deployment](https://img.shields.io/badge/Cloud-Firebase%20Hosting%20%2B%20GCP-4285F4?logo=googlecloud)
+## Descripción General
 
-**ERP Pachamama** es una solución empresarial en la nube para la gestión operativa, analítica de datos en tiempo real, trazabilidad y control de costos en el sector agroindustrial (**Pachamama Farms SAC**).
+Pachamama ERP es una solución integral de software orientada a la gestión empresarial, control de operaciones y optimización de procesos en plantas agroindustriales. El sistema centraliza la captura de información operative en tiempo real, garantizando la trazabilidad integral de productos agrícolas desde el ingreso de materia prima hasta su procesamiento final.
 
----
+## Alineación Académica y Profesional
 
-## 🎓 Alineación con Cursos y Perfiles Académicos
+### 1. Metodologías Ágiles de Innovación y Gestión de Procesos
+- Relevamiento Funcional y Modelado de Procesos: Mapeo detallado de flujos operativos del sector agrícola (Recepción, Calibrado, Calidad, Tareo, Costeo y Despacho).
+- Diseño centrado en Reglas de Negocio: Aplicación de validaciones y controles operativos para reducir errores de registro en planta.
+- Mejora Continua y Arquitectura Modular: Estructura desacoplada en módulos operativos que permite la iteración y escalabilidad continua del sistema.
 
-Este proyecto es una muestra integral de competencias prácticas para la enseñanza universitaria en las siguientes asignaturas:
+### 2. Bases de Datos No Relacionales y Servicios en la Nube
+- Almacenamiento en Tiempo Real: Integración con la base de datos NoSQL Firebase Firestore para la sincronización inmediata de registros de producción.
+- Servicios Cloud: Configuración de servicios en Google Cloud Platform (GCP) para el despliegue y administración de reglas de seguridad y persistencia de datos.
 
-### 1. 🍃 Bases de Datos No Relacionales (NoSQL)
-- **Modelado en Firebase Firestore**: Diseño de colecciones y documentos NoSQL (`db.js`) estructurados para alta disponibilidad y baja latencia.
-- **Consultas Asíncronas & Sincronización Real-Time**: Indexación de documentos, escuchadores en tiempo real (`onSnapshot`) y transacciones atómicas.
-- **Seguridad en Bases NoSQL**: Definición e implementación de reglas de acceso y seguridad granular en `firestore.rules`.
+## Módulos Operativos del Sistema
 
-### 2. 📊 Inteligencia de Negocios y Analytics (BI)
-- **Dashboards Ejecutivos y KPIs**: Visualización interactiva en tiempo real de métricas de rendimiento agrícola, volumen de cosecha y productividad por hectárea (`dashboard.js`).
-- **Analítica de Costos de Producción**: Módulo automatizado de costeo por cuadrilla, cultivo y lote (`costeo.js`).
-- **Módulo de Analítica IA (IA Studio)**: Procesamiento inteligente de datos históricos para la toma de decisiones estratégicas (`ia-studio.js`).
+- Módulo de Recepción: Registro de balanza, ingreso de materia prima y control de lotes.
+- Módulo de Calidad y Calibrado: Evaluación de parámetros fisiquímicos, descarte y clasificación por calibres.
+- Módulo de Tareo y Recursos Humanos: Control de asistencia, asignación de cuadrillas y seguimiento de rendimiento del personal.
+- Módulo de Costeo Operativo: Cálculo de costos directos e indirectos por lote procesado.
+- Módulo de Trazabilidad: Seguimiento completo del flujo de procesamiento agrícola.
 
-### 3. 🚀 Laboratorio de Integración V: Desarrollo y Despliegue de Software de BI
-- **Despliegue Multi-Entorno en la Nube**: Automatización de despliegue continuo mediante scripts PowerShell y GCP (`deploy-gcp.ps1`, `firebase.json`).
-- **Integración End-to-End**: Conexión entre la recolección de datos operativos en campo (Tareo/Recepción), procesamiento NoSQL y generación de tableros de BI para la gerencia.
+## Tecnologías Utilizadas
 
----
+- Lenguajes: JavaScript (ES6+), HTML5, CSS3
+- Arquitectura Web: Single Page Application (SPA) modular
+- Base de Datos y Backend as a Service: Firebase Firestore, Google Cloud Platform (GCP)
+- Reglas de Seguridad: Firestore Security Rules
 
-## 🌟 Módulos del Sistema
+## Instrucciones de Ejecución
 
-- ⏱️ **Tareo & Asistencia**: Control de asistencia, cuadrillas y cálculo de jornadas de trabajo.
-- 🍏 **Calibrado & Control de Calidad**: Clasificación de fruta por calibres y estándares de exportación.
-- 📦 **Recepción & Producción**: Cadena de ingreso de fruta desde el fundo a la planta.
-- 💰 **Costeo Agroindustrial**: Distribución de costos directos e indirectos por lote.
-- 🔍 **Trazabilidad de Exportación**: Seguimiento completo de origen a destino.
-
----
-
-## 🛠️ Stack Tecnológico
-
-- **Base de Datos NoSQL**: Firebase Firestore (Google Cloud Platform)
-- **Frontend & BI UI**: HTML5, CSS3 Grid/Flexbox, JavaScript ES6+
-- **Despliegue Cloud**: Firebase Hosting, Google Cloud CLI (`deploy-gcp.ps1`)
-- **Librerías de Exportación**: SheetJS / XLSX para reportes masivos.
+1. Clonar el repositorio:
+   git clone https://github.com/Rose-int/Pacha-ERP.git
+2. Abrir la carpeta del proyecto en el entorno de desarrollo.
+3. Configurar las credenciales de Firebase en el archivo de configuración correspondiente.
+4. Abrir el archivo index.html en un servidor local o navegador web.
 
 ---
 
-## 📂 Estructura del Código
+## Autora
 
-```text
-pachamama-erp/
-├── js/
-│   ├── db.js                # Capa de datos NoSQL y controladores Firestore
-│   ├── dashboard.js         # Tableros de Inteligencia de Negocios (BI)
-│   ├── costeo.js            # Módulo de analítica de costos
-│   ├── ia-studio.js         # Módulo de analítica inteligente
-│   └── trazabilidad.js      # Lógica de trazabilidad agroindustrial
-├── firebase.json            # Configuración de hosting e infraestructura cloud
-├── firestore.rules          # Reglas de seguridad NoSQL
-└── deploy-gcp.ps1           # Script de automatización de despliegue en la nube
-```
-
----
-
-## 📄 Licencia
-
-Desarrollado para **Pachamama Farms SAC**. Reservados todos los derechos.
+Danna Lopez
+Ingeniería Industrial y de Sistemas | Analista de Datos, BI y Transformación Digital
